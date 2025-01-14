@@ -7,5 +7,5 @@ To run it you need:
 - install all dependencies using the pip install -r requirements.txt command 
 - Run `./manage.py migrate`. `Not mandatory, just to get rid of terminal warning`
 - run the project with the command ./manage.py runserver 
-- open http://127.0.0.1:8000/jsonrpc_call/ in your browser.
+- open http://127.0.0.1:8000/jsonrpc-call/ in your browser.
 - in the `Method` input field, type `auth.check` for example, and click `Submit`, it should return you green result with data.
