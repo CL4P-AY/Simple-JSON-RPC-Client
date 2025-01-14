@@ -1,5 +1,3 @@
-This is simple JSON-RPC client to interact with remote endpoint using TLS.
-
 To run it you need:
 
 - clone this source code to your PC. 
