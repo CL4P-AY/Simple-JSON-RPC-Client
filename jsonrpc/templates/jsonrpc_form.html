@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JSON-RPC Test</title>
+</head>
+<body>
+    <h1>JSON-RPC Client</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if error %}
+        <div style="color:red;">
+            <h3>Error:</h3>
+            <pre>{{ error }}</pre>
+        </div>
+    {% endif %}
+
+    {% if result %}
+        <div style="color:green;">
+            <h3>Result:</h3>
+            <pre>{{ result }}</pre>
+        </div>
+    {% endif %}
+</body>
+</html>
