@@ -2,7 +2,7 @@ import json
 from django.views.generic.edit import FormView
 from django.urls import reverse_lazy
 from .forms import JsonRpcForm
-from clients.jsonrpc_client import call_jsonrpc_method
+from utils.jsonrpc_client import call_jsonrpc_method
 
 
 class JsonRpcCallView(FormView):

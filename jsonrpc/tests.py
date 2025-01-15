@@ -1,11 +1,11 @@
 from django.test import TestCase
 from unittest.mock import patch, MagicMock
 
-from clients.jsonrpc_client import call_jsonrpc_method
+from utils.jsonrpc_client import call_jsonrpc_method
 
 
 class JsonRpcClientTests(TestCase):
-    @patch("clients.jsonrpc_client.urllib.request.urlopen")
+    @patch("utils.jsonrpc_client.urllib.request.urlopen")
     def test_successful_call(self, mock_urlopen):
         # Given
         self._mocking_response(
@@ -21,7 +21,7 @@ class JsonRpcClientTests(TestCase):
         self.assertIn("data", result["result"])
         self.assertEqual(result["result"]["data"], "ok")
 
-    @patch("clients.jsonrpc_client.urllib.request.urlopen")
+    @patch("utils.jsonrpc_client.urllib.request.urlopen")
     def test_jsonrpc_error(self, mock_urlopen):
         # Given
         self._mocking_response(
@@ -36,7 +36,7 @@ class JsonRpcClientTests(TestCase):
         # Then
         self.assertIn("JSON-RPC error:", str(ctx.exception))
 
-    @patch("clients.jsonrpc_client.urllib.request.urlopen")
+    @patch("utils.jsonrpc_client.urllib.request.urlopen")
     def test_network_error(self, mock_urlopen):
         # Given
         mock_urlopen.side_effect = Exception("Network fail")
@@ -50,7 +50,7 @@ class JsonRpcClientTests(TestCase):
             "An error occurred while executing JSON-RPC request", str(ctx.exception)
         )
 
-    @patch("clients.jsonrpc_client.urllib.request.urlopen")
+    @patch("utils.jsonrpc_client.urllib.request.urlopen")
     def test_invalid_json_response(self, mock_urlopen):
         # Given
         self._mocking_response(
