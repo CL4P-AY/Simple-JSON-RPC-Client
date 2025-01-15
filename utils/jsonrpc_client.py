@@ -1,8 +1,10 @@
 import json
+import os
 import ssl
-import urllib.request
 import tempfile
+import urllib.request
 import uuid
+
 from django.conf import settings
 
 
@@ -51,7 +53,10 @@ def call_jsonrpc_method(method_name, params=None, request_id=None):
             f"An error occurred while executing JSON-RPC request: {e}"
         ) from e
     finally:
-        pass
+        cert_file.close()
+        key_file.close()
+        os.remove(cert_file.name)
+        os.remove(key_file.name)
 
     if "error" in json_response:
         raise RuntimeError(f"JSON-RPC error: {json_response['error']}")
